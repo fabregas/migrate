@@ -162,7 +162,7 @@ func (m *Mysql) Lock() error {
 		return err
 	}
 
-	query := "SELECT GET_LOCK(?, 1)"
+	query := "SELECT GET_LOCK(?, -1)"
 	var success bool
 	if err := m.db.QueryRow(query, aid).Scan(&success); err != nil {
 		return &database.Error{OrigErr: err, Err: "try lock failed", Query: []byte(query)}
